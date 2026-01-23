@@ -1,7 +1,7 @@
 import './globals.css'
 
 export const metadata = {
-    title: 'Gudang Prakasa - Spreadsheet Links',
+    title: 'PLI Bandung - Spreadsheet Links',
     description: 'Akses spreadsheet berdasarkan kategori dengan PIN protection',
 }
 
