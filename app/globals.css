@@ -7,25 +7,25 @@
 }
 
 :root {
-  /* Color Palette */
-  --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  /* Color Palette - Blue & Orange Theme */
+  --primary-gradient: linear-gradient(135deg, #1e90ff 0%, #0066cc 100%);
+  --secondary-gradient: linear-gradient(135deg, #ff8c42 0%, #ff6b35 100%);
   --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
   --dark-bg: #0f0f23;
   --card-bg: rgba(255, 255, 255, 0.05);
   --card-border: rgba(255, 255, 255, 0.1);
   --text-primary: #ffffff;
   --text-secondary: #a0a0c0;
-  --accent-purple: #667eea;
-  --accent-pink: #f5576c;
-  --accent-blue: #4facfe;
+  --accent-blue: #1e90ff;
+  --accent-orange: #ff8c42;
+  --accent-cyan: #4facfe;
 
   /* Shadows */
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.2);
   --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.3);
-  --glow-purple: 0 0 20px rgba(102, 126, 234, 0.3);
-  --glow-pink: 0 0 20px rgba(245, 87, 108, 0.3);
+  --glow-blue: 0 0 20px rgba(30, 144, 255, 0.3);
+  --glow-orange: 0 0 20px rgba(255, 140, 66, 0.3);
 
   /* Spacing */
   --spacing-xs: 0.5rem;
@@ -53,8 +53,8 @@ body {
 
 body {
   background-image:
-    radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(245, 87, 108, 0.1) 0%, transparent 50%);
+    radial-gradient(circle at 20% 50%, rgba(30, 144, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255, 140, 66, 0.1) 0%, transparent 50%);
   background-attachment: fixed;
   min-height: 100vh;
 }
@@ -99,23 +99,23 @@ a {
 .btn-primary {
   background: var(--primary-gradient);
   color: white;
-  box-shadow: var(--glow-purple);
+  box-shadow: var(--glow-blue);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 0 30px rgba(102, 126, 234, 0.5);
+  box-shadow: 0 0 30px rgba(30, 144, 255, 0.5);
 }
 
 .btn-secondary {
   background: var(--secondary-gradient);
   color: white;
-  box-shadow: var(--glow-pink);
+  box-shadow: var(--glow-orange);
 }
 
 .btn-secondary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 0 30px rgba(245, 87, 108, 0.5);
+  box-shadow: 0 0 30px rgba(255, 140, 66, 0.5);
 }
 
 .btn-success {
@@ -130,12 +130,12 @@ a {
 
 .btn-outline {
   background: transparent;
-  border: 2px solid var(--accent-purple);
+  border: 2px solid var(--accent-blue);
   color: var(--text-primary);
 }
 
 .btn-outline:hover {
-  background: var(--accent-purple);
+  background: var(--accent-blue);
   transform: translateY(-2px);
 }
 
@@ -154,9 +154,9 @@ a {
 
 .input:focus {
   outline: none;
-  border-color: var(--accent-purple);
+  border-color: var(--accent-blue);
   background: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  box-shadow: 0 0 0 3px rgba(30, 144, 255, 0.1);
 }
 
 .input::placeholder {
