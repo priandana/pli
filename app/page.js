@@ -8,14 +8,14 @@ export default function Home() {
             title: 'Umum',
             description: 'Spreadsheet untuk keperluan umum',
             icon: '📋',
-            gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+            gradient: 'linear-gradient(135deg, #1e90ff 0%, #0066cc 100%)'
         },
         {
             id: 'finishgood',
             title: 'Finishgood',
             description: 'Spreadsheet untuk barang jadi',
             icon: '📦',
-            gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)'
+            gradient: 'linear-gradient(135deg, #ff8c42 0%, #ff6b35 100%)'
         },
         {
             id: 'material',
@@ -34,7 +34,7 @@ export default function Home() {
                     <div className={styles.logo}>
                         <div className={styles.logoIcon}>📊</div>
                         <h1 className={styles.title}>
-                            Gudang <span className="text-gradient">Prakasa</span>
+                            PLI <span className="text-gradient">Bandung</span>
                         </h1>
                     </div>
                     <p className={styles.subtitle}>
@@ -75,7 +75,7 @@ export default function Home() {
 
                 {/* Footer */}
                 <footer className={styles.footer}>
-                    <p>© 2026 Gudang Prakasa. All rights reserved.</p>
+                    <p>© 2026 PLI Bandung. All rights reserved.</p>
                 </footer>
             </div>
         </div>
