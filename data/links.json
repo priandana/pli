@@ -1,0 +1,79 @@
+{
+  "categories": {
+    "umum": {
+      "pin": "1234",
+      "links": [
+        {
+          "id": "1",
+          "title": "Spreadsheet Umum 1",
+          "url": "https://docs.google.com/spreadsheets/d/example1",
+          "description": "Contoh spreadsheet untuk kategori umum"
+        }
+      ]
+    },
+    "finishgood": {
+      "pin": "5678",
+      "links": [
+        {
+          "id": "2",
+          "title": "Dispatch",
+          "url": "https://docs.google.com/spreadsheets/d/1O-uCAazHNcc3C6JLtNJc_26H-FgcHHsManhV7ypjIzM/edit?usp=sharing",
+          "description": "Untuk input Data"
+        }
+      ]
+    },
+    "material": {
+      "pin": "9012",
+      "links": [
+        {
+          "id": "3",
+          "title": "Spreadsheet Material 1",
+          "url": "https://docs.google.com/spreadsheets/d/example3",
+          "description": "Contoh spreadsheet untuk kategori material"
+        }
+      ]
+    }
+  },
+  "admin": {
+    "username": "admin",
+    "password": "admin123"
+  },
+  "analytics": {
+    "totalViews": 4,
+    "totalClicks": 1,
+    "linkStats": {
+      "1": {
+        "views": 4,
+        "clicks": 1,
+        "lastAccessed": "2026-01-23T15:26:22.945Z"
+      }
+    },
+    "recentActivity": [
+      {
+        "message": "Link \"Spreadsheet Umum 1\" was clicked in umum",
+        "time": "23/1/2026, 22.26.22",
+        "timestamp": "2026-01-23T15:26:22.945Z"
+      },
+      {
+        "message": "Link \"Spreadsheet Umum 1\" was viewed in umum",
+        "time": "23/1/2026, 22.26.21",
+        "timestamp": "2026-01-23T15:26:21.704Z"
+      },
+      {
+        "message": "Link \"Spreadsheet Umum 1\" was viewed in umum",
+        "time": "23/1/2026, 22.26.21",
+        "timestamp": "2026-01-23T15:26:21.701Z"
+      },
+      {
+        "message": "Link \"Spreadsheet Umum 1\" was viewed in umum",
+        "time": "23/1/2026, 22.26.10",
+        "timestamp": "2026-01-23T15:26:10.806Z"
+      },
+      {
+        "message": "Link \"Spreadsheet Umum 1\" was viewed in umum",
+        "time": "23/1/2026, 22.24.25",
+        "timestamp": "2026-01-23T15:24:26.073Z"
+      }
+    ]
+  }
+}
