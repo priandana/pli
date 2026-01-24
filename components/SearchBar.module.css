@@ -1,0 +1,85 @@
+.searchContainer {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.searchInput {
+    width: 100%;
+    padding: 16px 52px 16px 52px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 2px solid var(--card-border);
+    border-radius: var(--radius-xl);
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    transition: all var(--transition-base);
+}
+
+.searchInput:focus {
+    outline: none;
+    border-color: var(--accent-purple);
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15), var(--glow-purple);
+    transform: translateY(-2px);
+}
+
+.searchInput:hover:not(:focus) {
+    border-color: var(--card-border-hover);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.searchInput::placeholder {
+    color: var(--text-muted);
+}
+
+.searchIcon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+    pointer-events: none;
+    transition: color var(--transition-base);
+}
+
+.searchInput:focus~.searchIcon,
+.searchContainer:hover .searchIcon {
+    color: var(--accent-purple);
+}
+
+.clearButton {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: var(--radius-full);
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.clearButton:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--text-primary);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.clearButton:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+@media (max-width: 768px) {
+    .searchInput {
+        padding: 14px 48px 14px 48px;
+        font-size: 0.95rem;
+    }
+}
