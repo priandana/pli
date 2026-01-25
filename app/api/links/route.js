@@ -39,7 +39,7 @@ export async function GET(request) {
 // POST - Add new link
 export async function POST(request) {
     try {
-        const { category, title, url, description } = await request.json()
+        const { category, title, url, description, tags } = await request.json()
 
         if (!category || !title || !url) {
             return NextResponse.json(
@@ -61,7 +61,8 @@ export async function POST(request) {
             id: Date.now().toString(),
             title,
             url,
-            description: description || ''
+            description: description || '',
+            tags: tags || []
         }
 
         data.categories[category].links.push(newLink)
@@ -85,9 +86,9 @@ export async function POST(request) {
 export async function PUT(request) {
     try {
         const body = await request.json()
-        const { category, id, title, url, description } = body
+        const { category, id, title, url, description, tags } = body
 
-        console.log('PUT request received:', { category, id, title, url, description })
+        console.log('PUT request received:', { category, id, title, url, description, tags })
 
         if (!category || !id) {
             console.error('Missing category or id:', { category, id })
@@ -121,6 +122,7 @@ export async function PUT(request) {
         if (title) data.categories[category].links[linkIndex].title = title
         if (url) data.categories[category].links[linkIndex].url = url
         if (description !== undefined) data.categories[category].links[linkIndex].description = description
+        if (tags !== undefined) data.categories[category].links[linkIndex].tags = tags
 
         await setData(data)
 

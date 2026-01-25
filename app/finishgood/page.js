@@ -5,6 +5,8 @@ import Link from 'next/link'
 import SearchBar from '../../components/SearchBar'
 import LoadingSkeleton from '../../components/LoadingSkeleton'
 import Toast from '../../components/Toast'
+import FavoriteButton from '../../components/FavoriteButton'
+import TagFilter from '../../components/TagFilter'
 import styles from '../umum/category.module.css'
 
 export default function FinishgoodPage() {
@@ -16,6 +18,8 @@ export default function FinishgoodPage() {
     const [loading, setLoading] = useState(false)
     const [searchTerm, setSearchTerm] = useState('')
     const [sortBy, setSortBy] = useState('default')
+    const [showFavoritesOnly, setShowFavoritesOnly] = useState(false)
+    const [selectedTags, setSelectedTags] = useState([])
     const [toast, setToast] = useState(null)
 
     const category = 'finishgood'
@@ -36,7 +40,7 @@ export default function FinishgoodPage() {
 
     useEffect(() => {
         filterAndSortLinks()
-    }, [links, searchTerm, sortBy])
+    }, [links, searchTerm, sortBy, showFavoritesOnly, selectedTags])
 
     const fetchLinks = async () => {
         setLoading(true)
@@ -74,11 +78,31 @@ export default function FinishgoodPage() {
         }
     }
 
+    const getFavorites = () => {
+        if (typeof window === 'undefined') return []
+        const stored = localStorage.getItem(`favorites_${category}`)
+        return stored ? JSON.parse(stored) : []
+    }
+
     const filterAndSortLinks = () => {
         let filtered = links.filter(link =>
             link.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
             (link.description && link.description.toLowerCase().includes(searchTerm.toLowerCase()))
         )
+
+        // Filter by favorites if enabled
+        if (showFavoritesOnly) {
+            const favorites = getFavorites()
+            filtered = filtered.filter(link => favorites.includes(link.id))
+        }
+
+        // Filter by tags if selected
+        if (selectedTags.length > 0) {
+            filtered = filtered.filter(link => {
+                if (!link.tags || link.tags.length === 0) return false
+                return selectedTags.some(tag => link.tags.includes(tag))
+            })
+        }
 
         // Sort links
         if (sortBy === 'alphabetical') {
@@ -220,6 +244,13 @@ export default function FinishgoodPage() {
                     </button>
                 </div>
 
+                {/* Tag Filter */}
+                <TagFilter
+                    links={links}
+                    selectedTags={selectedTags}
+                    onTagsChange={setSelectedTags}
+                />
+
                 {/* Search and Sort Controls */}
                 <div className={styles.controls}>
                     <div className={styles.searchWrapper}>
@@ -228,18 +259,26 @@ export default function FinishgoodPage() {
                             onSearch={setSearchTerm}
                         />
                     </div>
-                    <div className={styles.sortWrapper}>
-                        <label htmlFor="sort" className={styles.sortLabel}>Urutkan:</label>
-                        <select
-                            id="sort"
-                            value={sortBy}
-                            onChange={(e) => setSortBy(e.target.value)}
-                            className={styles.sortSelect}
+                    <div className={styles.filterGroup}>
+                        <button
+                            onClick={() => setShowFavoritesOnly(!showFavoritesOnly)}
+                            className={`${styles.filterButton} ${showFavoritesOnly ? styles.active : ''}`}
                         >
-                            <option value="default">Default</option>
-                            <option value="alphabetical">A-Z</option>
-                            <option value="recent">Terbaru</option>
-                        </select>
+                            {showFavoritesOnly ? '⭐ Favorit' : '☆ Semua'}
+                        </button>
+                        <div className={styles.sortWrapper}>
+                            <label htmlFor="sort" className={styles.sortLabel}>Urutkan:</label>
+                            <select
+                                id="sort"
+                                value={sortBy}
+                                onChange={(e) => setSortBy(e.target.value)}
+                                className={styles.sortSelect}
+                            >
+                                <option value="default">Default</option>
+                                <option value="alphabetical">A-Z</option>
+                                <option value="recent">Terbaru</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
 
@@ -281,6 +320,11 @@ export default function FinishgoodPage() {
                                         </div>
                                         <div className={styles.linkArrow}>→</div>
                                     </a>
+                                    <FavoriteButton
+                                        linkId={link.id}
+                                        category={category}
+                                        size="medium"
+                                    />
                                     <button
                                         className={styles.copyButton}
                                         onClick={() => copyToClipboard(link.url, link.title)}

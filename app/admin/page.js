@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import ThemeToggle from '../../components/ThemeToggle'
+import TagInput from '../../components/TagInput'
 import styles from './admin.module.css'
 
 export default function AdminPage() {
@@ -23,7 +24,8 @@ export default function AdminPage() {
     const [formData, setFormData] = useState({
         title: '',
         url: '',
-        description: ''
+        description: '',
+        tags: []
     })
 
     useEffect(() => {
@@ -109,7 +111,7 @@ export default function AdminPage() {
 
             if (data.success) {
                 await fetchAllData()
-                setFormData({ title: '', url: '', description: '' })
+                setFormData({ title: '', url: '', description: '', tags: [] })
                 setShowAddForm(false)
             } else {
                 alert(data.message)
@@ -147,7 +149,7 @@ export default function AdminPage() {
 
             if (data.success) {
                 await fetchAllData()
-                setFormData({ title: '', url: '', description: '' })
+                setFormData({ title: '', url: '', description: '', tags: [] })
                 setEditingLink(null)
                 alert('Link berhasil diupdate!')
             } else {
@@ -214,14 +216,15 @@ export default function AdminPage() {
         setFormData({
             title: link.title,
             url: link.url,
-            description: link.description || ''
+            description: link.description || '',
+            tags: link.tags || []
         })
         setShowAddForm(false)
     }
 
     const cancelEdit = () => {
         setEditingLink(null)
-        setFormData({ title: '', url: '', description: '' })
+        setFormData({ title: '', url: '', description: '', tags: [] })
     }
 
     if (!isAuthenticated) {
@@ -309,6 +312,9 @@ export default function AdminPage() {
                     </h1>
                 </div>
                 <div className={styles.headerRight}>
+                    <Link href="/analytics" className={styles.analyticsLink}>
+                        📊 Analytics
+                    </Link>
                     <ThemeToggle />
                     <button
                         onClick={() => {
@@ -333,7 +339,7 @@ export default function AdminPage() {
                             setActiveTab(cat.id)
                             setShowAddForm(false)
                             setEditingLink(null)
-                            setFormData({ title: '', url: '', description: '' })
+                            setFormData({ title: '', url: '', description: '', tags: [] })
                         }}
                         className={`${styles.tab} ${activeTab === cat.id ? styles.tabActive : ''}`}
                     >
@@ -374,7 +380,7 @@ export default function AdminPage() {
                             onClick={() => {
                                 setShowAddForm(!showAddForm)
                                 setEditingLink(null)
-                                setFormData({ title: '', url: '', description: '' })
+                                setFormData({ title: '', url: '', description: '', tags: [] })
                             }}
                             className="btn btn-success"
                         >
@@ -421,6 +427,15 @@ export default function AdminPage() {
                                         className={`input ${styles.textarea}`}
                                         placeholder="Deskripsi singkat tentang spreadsheet ini"
                                         rows="3"
+                                    />
+                                </div>
+
+                                <div className={styles.inputGroup}>
+                                    <label className={styles.label}>Tags (Opsional)</label>
+                                    <TagInput
+                                        tags={formData.tags}
+                                        onChange={(newTags) => setFormData({ ...formData, tags: newTags })}
+                                        maxTags={5}
                                     />
                                 </div>
 

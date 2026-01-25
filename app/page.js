@@ -120,6 +120,10 @@ export default function Home() {
 
                 {/* Admin Link */}
                 <div className={styles.adminSection}>
+                    <Link href="/analytics" className={styles.adminLink}>
+                        <span>📊</span>
+                        <span>Analytics Dashboard</span>
+                    </Link>
                     <Link href="/admin" className={styles.adminLink}>
                         <span>⚙️</span>
                         <span>Admin Panel</span>

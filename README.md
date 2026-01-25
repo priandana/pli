@@ -7,6 +7,9 @@ Website untuk menampilkan link spreadsheet dengan 3 kategori yang dilindungi PIN
 - ✅ **3 Kategori Terpisah**: Umum, Finishgood, Material
 - 🔒 **PIN Protection**: Setiap kategori dilindungi dengan PIN yang berbeda
 - ⚙️ **Admin Panel**: Kelola link dan PIN dengan mudah
+- 📊 **Analytics Dashboard**: Monitor views, clicks, dan statistik penggunaan
+- ⭐ **Favorites System**: Bookmark link favorit untuk akses cepat
+- 🏷️ **Tag System**: Organisir dan filter link dengan tags
 - 🎨 **Modern UI**: Dark mode dengan glassmorphism dan animasi smooth
 - 📱 **Responsive**: Tampil sempurna di semua perangkat
 - 🚀 **Vercel Ready**: Siap deploy ke Vercel
