@@ -115,14 +115,57 @@ Edit file `data/links.json`:
 
 ## 🚀 Deploy ke Vercel
 
-### Method 1: Via Vercel Dashboard
+### Prasyarat
+- Akun Vercel (gratis di [vercel.com](https://vercel.com))
+- Repository GitHub
 
-1. Push code ke GitHub repository
-2. Buka [vercel.com](https://vercel.com)
-3. Import repository
-4. Deploy!
+### Step 1: Setup Vercel KV Database
 
-### Method 2: Via Vercel CLI
+**PENTING:** Website ini memerlukan Vercel KV database untuk berfungsi di production.
+
+1. **Buat Database**
+   - Login ke [Vercel Dashboard](https://vercel.com/dashboard)
+   - Pilih project Anda
+   - Klik tab **"Storage"**
+   - Klik **"Create Database"** → Pilih **"KV"**
+   - Beri nama: `gudang-prakasa-kv`
+   - Pilih region terdekat (Singapore untuk Indonesia)
+   - Klik **"Create"**
+
+2. **Connect ke Project**
+   - Klik **"Connect to Project"**
+   - Pilih project Anda
+   - Pilih semua environments (Production, Preview, Development)
+   - Klik **"Connect"**
+   - Vercel akan otomatis menambahkan environment variables yang diperlukan
+
+> 📖 **Panduan Lengkap**: Lihat [VERCEL_KV_SETUP.md](./VERCEL_KV_SETUP.md) untuk instruksi detail, troubleshooting, dan monitoring database.
+
+
+### Step 2: Deploy Aplikasi
+
+#### Via Vercel Dashboard (Recommended)
+
+1. **Push ke GitHub**
+   ```bash
+   git add .
+   git commit -m "Ready for deployment"
+   git push origin main
+   ```
+
+2. **Import di Vercel**
+   - Di Vercel Dashboard, klik **"Add New..."** → **"Project"**
+   - Pilih repository Anda
+   - Klik **"Import"**
+   - Klik **"Deploy"** (environment variables sudah otomatis dari Step 1)
+
+3. **Verifikasi**
+   - Tunggu deployment selesai
+   - Buka website Anda
+   - Pastikan tidak ada error
+   - **SEGERA ubah PIN dan kredensial admin!**
+
+#### Via Vercel CLI
 
 ```bash
 # Install Vercel CLI
@@ -132,14 +175,11 @@ npm i -g vercel
 vercel login
 
 # Deploy
-vercel
+vercel --prod
 ```
 
-### Setelah Deploy
+> ⚠️ **Jika Muncul Error**: Pastikan Vercel KV sudah di-connect ke project (lihat Step 1)
 
-1. Akses website Anda
-2. Login ke Admin Panel
-3. **SEGERA ubah PIN dan kredensial admin default!**
 
 ## 🔧 Konfigurasi
 
@@ -207,8 +247,11 @@ npm start
 
 - **Framework**: Next.js 14 (App Router)
 - **Styling**: Vanilla CSS dengan modern design system
-- **Data Storage**: JSON file-based
+- **Data Storage**: 
+  - Development: JSON file-based
+  - Production: Vercel KV (Redis)
 - **Deployment**: Vercel-optimized
+
 
 ## 🔒 Keamanan
 
