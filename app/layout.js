@@ -1,4 +1,5 @@
 import './globals.css'
+import LoadingScreen from '../components/LoadingScreen'
 
 export const metadata = {
     title: 'PLI Bandung - Spreadsheet Links',
@@ -22,7 +23,10 @@ export default function RootLayout({ children }) {
                     }}
                 />
             </head>
-            <body>{children}</body>
+            <body>
+                <LoadingScreen />
+                {children}
+            </body>
         </html>
     )
 }
